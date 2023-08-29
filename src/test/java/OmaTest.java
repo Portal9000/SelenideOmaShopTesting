@@ -1,9 +1,10 @@
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -22,15 +23,12 @@ public class OmaTest extends BaseTest {
     }
 
     public SelenideElement findCheapestPrice() {
-        ElementsCollection productPrices = $$(By.xpath("//div[@id=\"data-ga__catalog-products-grid\"]//span[@class=\"price__normal black\"]"));
+        ElementsCollection productPrices = $$(By.xpath("//div[@id=\"data-ga__catalog-products-grid\"]//span[@class=\"price__normal black\"]"));  // TODO add red
         double lowestPrice = Double.MAX_VALUE;
         SelenideElement cheapestProduct = null;
-        int x=0;
         for (SelenideElement productPrice : productPrices) {
-            SelenideElement product = productPrice.closest("div[contains(@class, 'product-item__grid')]");                     // TODO нужен весь блок?
+            SelenideElement product = productPrice.closest("div[contains(@class, 'product-item__grid')]");        // TODO нужен весь блок?
             String priceText = productPrice.getText().replace(" р. / шт", "").replace(",", ".");
-            x++;
-            System.out.println(x + " a|" + priceText + "|b");
             double price = Double.MAX_VALUE;
             if (priceText != "") {
                 price = Double.parseDouble(priceText);
@@ -56,19 +54,18 @@ public class OmaTest extends BaseTest {
 
     public void verifyProductInCart(String productName) {
         $$(By.xpath("//a[@class=\"basket-product-item_title js-broadcast-hover\"]"))
-                .filter(Condition.text(productName))
+                .filter(text(productName))
                 .shouldHave(CollectionCondition.sizeGreaterThan(0));
     }
 
-//    @Test
-//    public void loginTest() {
-//        login("293305742", "c114b9b2");
-//        $(By.xpath("//h2[@class=\"personal-user_name\"]")).shouldHave(text("Зинчук Александр Борисович"));
-//    }
+    @Test
+    public void loginTest() {
+        login("293305742", "c114b9b2");
+        $(By.xpath("//h2[@class=\"personal-user_name\"]")).shouldHave(text("Зинчук Александр Борисович"));
+    }
 
     @Test
     public void addItemToCart() {
-//        login("293305742", "c114b9b2");
         $(By.xpath("//a[@href=\"/interer-i-otdelka-c\"]")).click();
         $(By.xpath("//div[@data-items-visible='11']/a[@href=\"/laminat-c\"]")).click();
         SelenideElement cheapestProduct = findCheapestPrice();

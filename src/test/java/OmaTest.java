@@ -1,15 +1,14 @@
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
-public class OmaTest {
 
-    @BeforeMethod
-    public void goToUrl() {
-        open("https://www.oma.by");
-    }
+public class OmaTest extends BaseTest {
 
     public void login (String phoneNumber, String password) {
         $(By.xpath("//span[@class='icon icon__person']")).click();

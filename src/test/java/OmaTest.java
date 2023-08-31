@@ -1,77 +1,31 @@
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import org.example.steps.LoginSteps;
+import org.example.steps.ProductsSteps;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 
 public class OmaTest extends BaseTest {
 
-    public void login (String phoneNumber, String password) {
-        $(By.xpath("//span[@class='icon icon__person']")).click();
-        $(By.xpath("//input[@placeholder='+375 (__) ___-__-__']")).setValue(phoneNumber);
-        $(By.xpath("//input[@name='PASSWORD']")).setValue(password);
-        $(By.xpath("//span[@class=\"checkbox-visual_icon icon icon__check\"]")).click();
-        if ($(By.xpath("//div[@class='backdrop-close']")).isDisplayed()) {
-            $(By.xpath("//div[@class='backdrop-close']")).click();
-        }
-        $(By.xpath("//button[@name=\"SET_LOGIN\"]")).hover().click();
-    }
-
-    public SelenideElement findCheapestPrice() {
-        ElementsCollection productPrices = $$(By.xpath("//div[@id=\"data-ga__catalog-products-grid\"]//span[@class=\"price__normal black\"]"));  // TODO add red
-        double lowestPrice = Double.MAX_VALUE;
-        SelenideElement cheapestProduct = null;
-        for (SelenideElement productPrice : productPrices) {
-            SelenideElement product = productPrice.closest("div[contains(@class, 'product-item__grid')]");        // TODO нужен весь блок?
-            String priceText = productPrice.getText().replace(" р. / шт", "").replace(",", ".");
-            double price = Double.MAX_VALUE;
-            if (priceText != "") {
-                price = Double.parseDouble(priceText);
-            }
-            if (price < lowestPrice) {
-                lowestPrice = price;
-                cheapestProduct = product;
-            }
-        }
-        return cheapestProduct;
-    }
-
-    public void addProductToCart(SelenideElement product) {
-        if ($(By.xpath("//div[@class='backdrop-close']")).isDisplayed()) {
-            $(By.xpath("//div[@class='backdrop-close']")).click();
-        }
-        product.find(".js_orderButton").scrollIntoView("{block: \"center\"}").hover().click();
-    }
-
-    public void goToCart() {
-        $(By.xpath("//a[@href=\"/order/\"]")).click();
-    }
-
-    public void verifyProductInCart(String productName) {
-        $$(By.xpath("//a[@class=\"basket-product-item_title js-broadcast-hover\"]"))
-                .filter(text(productName))
-                .shouldHave(CollectionCondition.sizeGreaterThan(0));
-    }
+    LoginSteps loginSteps = new LoginSteps();
+    ProductsSteps productsSteps = new ProductsSteps();
 
     @Test
     public void loginTest() {
-        login("293305742", "c114b9b2");
+        loginSteps.login("293305742", "c114b9b2");
         $(By.xpath("//h2[@class=\"personal-user_name\"]")).shouldHave(text("Зинчук Александр Борисович"));
     }
 
     @Test
     public void addItemToCart() {
-        $(By.xpath("//a[@href=\"/interer-i-otdelka-c\"]")).click();
-        $(By.xpath("//div[@data-items-visible='11']/a[@href=\"/laminat-c\"]")).click();
-        SelenideElement cheapestProduct = findCheapestPrice();
+        productsSteps.goToLaminatCategory();
+        SelenideElement cheapestProduct = productsSteps.findCheapestPrice();
         String productName = cheapestProduct.find(".product-item_title").getText();
-        addProductToCart(cheapestProduct);
-        goToCart();
-        verifyProductInCart(productName);
+        productsSteps.addProductToCart(cheapestProduct);
+        productsSteps.goToCart();
+        productsSteps.verifyProductInCart(productName);
     }
 }

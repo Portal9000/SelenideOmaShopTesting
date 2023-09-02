@@ -1,4 +1,5 @@
 import com.codeborne.selenide.SelenideElement;
+import org.example.pages.MainPage;
 import org.example.steps.LoginSteps;
 import org.example.steps.ProductsSteps;
 import org.openqa.selenium.By;
@@ -16,7 +17,7 @@ public class OmaTest extends BaseTest {
     @Test
     public void loginTest() {
         loginSteps.login("293305742", "c114b9b2");
-        $(By.xpath("//h2[@class=\"personal-user_name\"]")).shouldHave(text("Зинчук Александр Борисович"));
+        loginSteps.verifyLogin("Зинчук Александр Борисович");
     }
 
     @Test

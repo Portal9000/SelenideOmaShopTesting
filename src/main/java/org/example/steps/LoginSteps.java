@@ -1,18 +1,31 @@
 package org.example.steps;
 
+import org.example.pages.LoginPage;
+import org.example.pages.MainPage;
+import org.example.pages.PopUpPage;
 import org.openqa.selenium.By;
+
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginSteps {
 
+    MainPage mainPage = new MainPage();
+    LoginPage loginPage = new LoginPage();
+    PopUpPage popUpPage = new PopUpPage();
+
     public void login(String phoneNumber, String password) {
-        $(By.xpath("//span[@class='icon icon__person']")).click();
-        $(By.xpath("//input[@placeholder='+375 (__) ___-__-__']")).setValue(phoneNumber);
-        $(By.xpath("//input[@name='PASSWORD']")).setValue(password);
-        $(By.xpath("//span[@class=\"checkbox-visual_icon icon icon__check\"]")).click();
-        if ($(By.xpath("//div[@class='backdrop-close']")).isDisplayed()) {
-            $(By.xpath("//div[@class='backdrop-close']")).click();
+        mainPage.commonLoginRegisterButton.click();
+        loginPage.phoneNumberField.setValue(phoneNumber);
+        loginPage.passwordField.setValue(password);
+        loginPage.agreeCheckbox.click();
+        if (popUpPage.popUp.isDisplayed()) {
+            popUpPage.popUp.click();
         }
-        $(By.xpath("//button[@name=\"SET_LOGIN\"]")).hover().click();
+        loginPage.loginButton.hover().click();
+    }
+
+    public void verifyLogin(String accountOwnerName) {
+        mainPage.personalAccountOwnerName.shouldHave(text(accountOwnerName));
     }
 }

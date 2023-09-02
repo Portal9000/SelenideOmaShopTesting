@@ -8,6 +8,6 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class DirectCategoryPage {
 
-    public SelenideElement laminatCategoryPage = $(By.xpath("//div[@data-items-visible='11']/a[@href=\"/laminat-c\"]"));
-    public ElementsCollection productPricesText = $$(By.xpath("//div[@id=\"data-ga__catalog-products-grid\"]//span[@class=\"price__normal black\"]"));
+    public ElementsCollection productPricesText = $$(By.xpath("//div[@id='data-ga__catalog-products-grid']//span[@class='price__normal black']"));
+    public SelenideElement laminatCategoryPage = $(By.xpath("//div[@data-items-visible='11']/a[@href='/laminat-c']"));
 }

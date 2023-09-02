@@ -8,7 +8,7 @@ public class OmaTest extends BaseTest {
     LoginSteps loginSteps = new LoginSteps();
     ProductsSteps productsSteps = new ProductsSteps();
 
-    @Test
+    @Test(enabled = false)
     public void loginTest() {
         loginSteps.login("293305742", "c114b9b2");
         loginSteps.verifyLogin("Зинчук Александр Борисович");

@@ -7,5 +7,4 @@ import static com.codeborne.selenide.Selenide.$;
 public class PopUpPage {
 
     public SelenideElement popUp = $(By.xpath("//div[@class='backdrop-close']"));
-
 }

@@ -1,6 +1,8 @@
 import com.codeborne.selenide.SelenideElement;
+import org.example.models.UserData;
 import org.example.steps.LoginSteps;
 import org.example.steps.ProductsSteps;
+import org.example.utils.JsonReader;
 import org.testng.annotations.Test;
 
 public class OmaTest extends BaseTest {
@@ -8,9 +10,9 @@ public class OmaTest extends BaseTest {
     LoginSteps loginSteps = new LoginSteps();
     ProductsSteps productsSteps = new ProductsSteps();
 
-    @Test(enabled = false)
-    public void loginTest() {
-        loginSteps.login("293305742", "c114b9b2");
+    @Test(dataProvider = "userData", dataProviderClass = JsonReader.class)
+    public void loginTest(UserData userData) {
+        loginSteps.login(userData.getPhoneNumber(), userData.getPassword());
         loginSteps.verifyLogin("Зинчук Александр Борисович");
     }
 

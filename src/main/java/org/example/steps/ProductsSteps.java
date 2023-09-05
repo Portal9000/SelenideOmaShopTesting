@@ -2,6 +2,7 @@ package org.example.steps;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.SelenideElement;
+import org.example.models.ProductData;
 import org.example.pages.CartPage;
 import org.example.pages.DirectCategoryPage;
 import org.example.pages.MainPage;
@@ -46,12 +47,34 @@ public class ProductsSteps {
     }
 
     public void goToCart() {
-        cartPage.goToCartButton.click();
+        if (popUpPage.popUp.isDisplayed()) {
+            popUpPage.popUp.click();
+        }
+        directCategoryPage.goToCartButton.click();
     }
 
     public void verifyProductInCart(String productName) {
         cartPage.productNameInCart
                 .filter(text(productName))
                 .shouldHave(CollectionCondition.sizeGreaterThan(0));
+    }
+
+    public void clickFirstAddToCartButton() {
+        directCategoryPage.firstAddToCartButton.scrollIntoView("{block: \"center\"}").hover().click();
+
+//        directCategoryPage.firstAddToCartButton.scrollIntoView(true).hover().click();
+    }
+
+    public ProductData setProductData(ProductData productData) {
+        productData.setProductName(productData.getProductName());
+        productData.setProductPrice(productData.getProductPrice());
+        return productData;
+    }
+
+    public ProductData getProductData() {
+        ProductData productData = new ProductData();
+        productData.setProductName(cartPage.productNameInCart.get(0).getText());
+        productData.setProductPrice(cartPage.productPriceInCart.getText());
+        return productData;
     }
 }

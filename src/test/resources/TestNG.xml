@@ -6,8 +6,9 @@
             <class name="OmaTest">
                 <methods>
 <!--                    <include name="loginTest"/>-->
-                    <include name="compareProducts"/>
+<!--                    <include name="compareProducts"/>-->
 <!--                    <include name="addCheapestItemToCart"/>-->
+                    <include name="clickstoreAdressesText"/>
                 </methods>
             </class>
         </classes>

@@ -28,12 +28,17 @@ public class OmaTest extends BaseTest {
         productsSteps.verifyProductInCart(productName);
     }
 
-    @Test(dataProvider = "testData", dataProviderClass = JsonReader.class)
+    @Test(dataProvider = "TestData", dataProviderClass = JsonReader.class)
     public void compareProducts(TestData testData) {
         productsSteps.goToLaminatCategory();
         productsSteps.clickFirstAddToCartButton();
         productsSteps.goToCart();
         System.out.println(productsSteps.getProductData().getProductName() + "\n" + productsSteps.getProductData().getProductPrice());
         Assert.assertEquals(productsSteps.getProductData(), productsSteps.setProductData(testData.getProductData()));
+    }
+
+    @Test(dataProvider = "TestData", dataProviderClass = JsonReader.class)
+    public void clickstoreAdressesText(TestData testData) {
+        productsSteps.clickstoreAdressesText("Адреса магазинов");
     }
 }

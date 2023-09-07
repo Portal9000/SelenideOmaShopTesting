@@ -32,16 +32,14 @@ public class JsonReader {
         }
     }
 
-
-    @DataProvider(name = "testData")
+    @DataProvider(name = "TestData")
     public Object[][] getProductData() throws IOException {
-        String filePath = "src/test/resources/test-data/testData.json";
+        String filePath = "src/test/resources/test-data/TestData.json";
         List<TestData> testDataList = readProductDataFromJson(filePath);
         Object[][] data = new Object[testDataList.size()][1];
         for (int i = 0; i < testDataList.size(); i++) {
             data[i][0] = testDataList.get(i);
         }
-
         return data;
     }
 

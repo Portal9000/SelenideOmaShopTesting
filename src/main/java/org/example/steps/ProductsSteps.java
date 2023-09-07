@@ -61,8 +61,6 @@ public class ProductsSteps {
 
     public void clickFirstAddToCartButton() {
         directCategoryPage.firstAddToCartButton.scrollIntoView("{block: \"center\"}").hover().click();
-
-//        directCategoryPage.firstAddToCartButton.scrollIntoView(true).hover().click();
     }
 
     public ProductData setProductData(ProductData productData) {
@@ -76,5 +74,9 @@ public class ProductsSteps {
         productData.setProductName(cartPage.productNameInCart.get(0).getText());
         productData.setProductPrice(cartPage.productPriceInCart.getText());
         return productData;
+    }
+
+    public void clickstoreAdressesText (String storeAdresses) {
+        directCategoryPage.storeAdressesText(storeAdresses).click();
     }
 }

@@ -12,8 +12,9 @@ public class DirectCategoryPage {
     public SelenideElement firstAddToCartButton = $$(By.xpath("//button[@class=\"btn btn__catalog btn-bg_blue js_orderButton \"]")).first();
     public ElementsCollection productPricesText = $$(By.xpath("//div[@id='data-ga__catalog-products-grid']//span[@class='price__normal black']"));
     public SelenideElement goToCartButton = $(By.xpath("//a[@href='/order/']"));
-
     public SelenideElement storeAdressesText(String storeAdresses) {
         return $(By.xpath("//a[contains(@class,'header-top_item')]//span[contains(text(),'" + storeAdresses + "')]"));
     }
+
+    public SelenideElement tryTest = $(By.xpath("//div[@class=\"page-title_title-cell\"]//h1[contains(text(), 'амина')]"));
 }

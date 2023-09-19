@@ -6,7 +6,11 @@ import org.example.models.ProductData;
 import org.example.pages.CartPage;
 import org.example.pages.DirectCategoryPage;
 import org.example.pages.MainPage;
-import org.example.pages.PopUpPage;
+import org.example.pages.PopUpPages;
+import org.example.utils.ClosePopUp;
+
+import java.util.Arrays;
+
 import static com.codeborne.selenide.Condition.text;
 
 public class ProductsSteps {
@@ -14,15 +18,22 @@ public class ProductsSteps {
     MainPage mainPage = new MainPage();
     DirectCategoryPage directCategoryPage = new DirectCategoryPage();
     CartPage cartPage = new CartPage();
-    PopUpPage popUpPage = new PopUpPage();
+    ClosePopUp closePopUp = new ClosePopUp();
 
     public SelenideElement findCheapestPrice() {
         double lowestPrice = Double.MAX_VALUE;
         SelenideElement cheapestProduct = null;
+
+        int count = 1;
+
         for (SelenideElement productPrice : directCategoryPage.productPricesText) {   // TODO add red
-            SelenideElement product = productPrice.closest("div[contains(@class, 'product-item__grid')]");        // TODO нужен весь блок?
+            SelenideElement product = productPrice.closest("div[contains(@class, 'product-item__grid')]");        // TODO нужны все страницы
             String priceText = productPrice.getText().replace(" р. / шт", "").replace(",", ".");
             double price = Double.MAX_VALUE;
+
+            System.out.println(count + " q1||" + priceText + "||q2");
+            count++;
+
             if (priceText != "") {
                 price = Double.parseDouble(priceText);
             }
@@ -35,21 +46,16 @@ public class ProductsSteps {
     }
 
     public void goToLaminatCategory() {
+        closePopUp.closePopUps();
         mainPage.chooseCommonCategoryOtdelka.click();
         directCategoryPage.laminatCategoryPage.click();
     }
 
     public void addProductToCart(SelenideElement product) {
-        if (popUpPage.popUp.isDisplayed()) {
-            popUpPage.popUp.click();
-        }
         product.find(".js_orderButton").scrollIntoView("{block: \"center\"}").hover().click();
     }
 
     public void goToCart() {
-        if (popUpPage.popUp.isDisplayed()) {
-            popUpPage.popUp.click();
-        }
         directCategoryPage.goToCartButton.click();
     }
 
@@ -76,7 +82,7 @@ public class ProductsSteps {
         return productData;
     }
 
-    public void clickstoreAdressesText (String storeAdresses) {
+    public void clickStoreAddressesText (String storeAdresses) {
         directCategoryPage.storeAdressesText(storeAdresses).click();
     }
 }

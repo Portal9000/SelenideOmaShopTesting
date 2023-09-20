@@ -22,11 +22,9 @@ public class OmaTest extends BaseTest {
 
     @Test
     public void addCheapestItemToCart() {
-        closePopUp.closePopUps();
         productsSteps.goToLaminatCategory();
         SelenideElement cheapestProduct = productsSteps.findCheapestPrice();
         String productName = cheapestProduct.find(".product-item_title").getText();
-        closePopUp.closePopUps();
         productsSteps.addProductToCart(cheapestProduct);
         productsSteps.goToCart();
         productsSteps.verifyProductInCart(productName);
@@ -35,9 +33,7 @@ public class OmaTest extends BaseTest {
     @Test(dataProvider = "TestData", dataProviderClass = JsonReader.class)
     public void compareProducts(TestData testData) {
         productsSteps.goToLaminatCategory();
-        closePopUp.closePopUps();
         productsSteps.clickFirstAddToCartButton();
-        closePopUp.closePopUps();
         productsSteps.goToCart();
         Assert.assertEquals(productsSteps.getProductData(), productsSteps.setProductData(testData.getProductData()));
     }

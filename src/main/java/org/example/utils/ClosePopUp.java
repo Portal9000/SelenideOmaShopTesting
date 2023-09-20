@@ -6,10 +6,10 @@ public class ClosePopUp {
 
     PopUpPages popUpPages = new PopUpPages();
     public void closePopUps() {
-        if (popUpPages.popUp1.isDisplayed()) {
-            System.out.println("PopUp1 is displayed");
-            popUpPages.popUp1.hover().click();
-        }
+//        if (popUpPages.popUp1bgr.isDisplayed()) {
+//            System.out.println("PopUp1 is displayed");
+//            popUpPages.popUp1btn.hover().click();
+//        }
         if (popUpPages.popUp2.isDisplayed()) {
             System.out.println("PopUp2 is displayed");
             popUpPages.popUp2.scrollIntoView("{block: \"center\"}").hover().click();

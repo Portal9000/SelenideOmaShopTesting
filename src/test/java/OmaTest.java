@@ -20,7 +20,7 @@ public class OmaTest extends BaseTest {
         loginSteps.verifyLogin("Зинчук Александр Борисович");
     }
 
-    @Test
+    @Test()
     public void addCheapestItemToCart() {
         productsSteps.goToLaminatCategory();
         SelenideElement cheapestProduct = productsSteps.findCheapestPrice();
@@ -40,7 +40,6 @@ public class OmaTest extends BaseTest {
 
     @Test(dataProvider = "TestData", dataProviderClass = JsonReader.class)
     public void clickstoreAdressesText(TestData testData) {
-        closePopUp.closePopUps();
         productsSteps.clickStoreAddressesText("Адреса магазинов");
     }
 }

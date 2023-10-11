@@ -34,7 +34,7 @@ public class ProductsSteps {
             System.out.println(count + " q1||" + priceText + "||q2");
             count++;
 
-            if (priceText != "") {
+            if (priceText != null) {
                 price = Double.parseDouble(priceText);
             }
             if (price < lowestPrice) {
@@ -46,7 +46,6 @@ public class ProductsSteps {
     }
 
     public void goToLaminatCategory() {
-        closePopUp.closePopUps();
         mainPage.chooseCommonCategoryOtdelka.click();
         directCategoryPage.laminatCategoryPage.click();
     }

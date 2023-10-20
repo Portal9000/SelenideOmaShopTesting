@@ -20,7 +20,7 @@ public class OmaTest extends BaseTest {
         loginSteps.verifyLogin("Зинчук Александр Борисович");
     }
 
-    @Test()
+    @Test
     public void addCheapestItemToCart() {
         productsSteps.goToLaminatCategory();
         SelenideElement cheapestProduct = productsSteps.findCheapestPrice();
@@ -35,11 +35,11 @@ public class OmaTest extends BaseTest {
         productsSteps.goToLaminatCategory();
         productsSteps.clickFirstAddToCartButton();
         productsSteps.goToCart();
-        Assert.assertEquals(productsSteps.getProductData(), productsSteps.setProductData(testData.getProductData()));
+        Assert.assertEquals(productsSteps.getProductData(), testData.getProductData());
     }
 
-    @Test(dataProvider = "TestData", dataProviderClass = JsonReader.class)
-    public void clickstoreAdressesText(TestData testData) {
+    @Test
+    public void clickStoreAddressesText() {
         productsSteps.clickStoreAddressesText("Адреса магазинов");
     }
 }

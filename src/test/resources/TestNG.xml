@@ -5,10 +5,10 @@
         <classes>
             <class name="OmaTest">
                 <methods>
-                    <include name="loginTest"/>
-                    <include name="compareProducts"/>
-                    <include name="addCheapestItemToCart"/>
-<!--                    <include name="clickStoreAddressesText"/>-->
+<!--                    <include name="loginTest"/>-->
+<!--                    <include name="compareProducts"/>-->
+<!--                    <include name="addCheapestItemToCart"/>-->
+                    <include name="clickStoreAddressesText"/>
                 </methods>
             </class>
         </classes>

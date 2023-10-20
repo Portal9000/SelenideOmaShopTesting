@@ -8,6 +8,7 @@ import org.example.pages.DirectCategoryPage;
 import org.example.pages.MainPage;
 import org.example.pages.PopUpPages;
 import org.example.utils.ClosePopUp;
+import org.example.utils.Waiters;
 
 import java.util.Arrays;
 
@@ -23,23 +24,20 @@ public class ProductsSteps {
     public SelenideElement findCheapestPrice() {
         double lowestPrice = Double.MAX_VALUE;
         SelenideElement cheapestProduct = null;
-
-        int count = 1;
-
-        for (SelenideElement productPrice : directCategoryPage.productPricesText) {   // TODO add red
+        for (SelenideElement productPrice : directCategoryPage.productPricesText) {
             SelenideElement product = productPrice.closest("div[contains(@class, 'product-item__grid')]");        // TODO нужны все страницы
-            String priceText = productPrice.getText().replace(" р. / шт", "").replace(",", ".");
+            String priceText = productPrice.getText();
             double price = Double.MAX_VALUE;
-
-            System.out.println(count + " q1||" + priceText + "||q2");
-            count++;
-
-            if (priceText != null) {
+            if (priceText != null && !priceText.equals("")) {
+                priceText = priceText
+                        .replace(" р. / шт", "")
+                        .replace(",", ".")
+                        .replace(" р.", "");
                 price = Double.parseDouble(priceText);
-            }
-            if (price < lowestPrice) {
-                lowestPrice = price;
-                cheapestProduct = product;
+                if (price < lowestPrice && price > 0) {
+                    lowestPrice = price;
+                    cheapestProduct = product;
+                }
             }
         }
         return cheapestProduct;
@@ -48,6 +46,7 @@ public class ProductsSteps {
     public void goToLaminatCategory() {
         mainPage.chooseCommonCategoryOtdelka.click();
         directCategoryPage.laminatCategoryPage.click();
+        Waiters.sleep();
     }
 
     public void addProductToCart(SelenideElement product) {
@@ -81,7 +80,7 @@ public class ProductsSteps {
         return productData;
     }
 
-    public void clickStoreAddressesText (String storeAdresses) {
-        directCategoryPage.storeAdressesText(storeAdresses).click();
+    public void clickStoreAddressesText (String storeAddresses) {
+        directCategoryPage.storeAddressesText(storeAddresses).click();
     }
 }

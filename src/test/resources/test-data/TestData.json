@@ -1,15 +1,12 @@
 [
   {
     "userData": {
-      "phoneNumber": "293305742-ASS",
-      "password": "c114b9b2-ASS"
+      "phoneNumber": "293305742",
+      "password": "c114b9b2"
     },
     "productData": {
       "productName": "Ламинат Sunfloor Сосна Тахо 52 33 кл. (1380х161х8мм, S=0,22218)",
       "productPrice": "7,75 руб."
-    },
-    "testData": {
-      "storeAdresses": "Адреса магазинов"
     }
   }
 ]

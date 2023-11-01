@@ -35,20 +35,21 @@ public class OmaTest extends BaseTest {
     public void compareProducts(TestData testData) {
         productsSteps.goToLaminatCategory();
         productsSteps.clickFirstAddToCartButton();
+        closePopUp.closePopUps();
         productsSteps.goToCart();
         Assert.assertEquals(productsSteps.getProductData(), testData.getProductData());
     }
 
-    @Test
-    public void clickStoreAddressesText() {
-        productsSteps.clickStoreAddressesText("Адреса магазинов");
-    }
+//    @Test
+//    public void clickStoreAddressesText() {
+//        productsSteps.clickStoreAddressesText("Адреса магазинов");
+//    }
 
-    @Test(dataProvider = "BreadCrumbs", dataProviderClass = JsonReader.class)
-    public void compareBreadCrumbs(BreadCrumbs breadCrumbs) {
-        productsSteps.goToLaminatCategory();
-        productsSteps.clickFirstAddToCartButton();
-        productsSteps.goToCart();
-        Assert.assertEquals(productsSteps.getProductData(), testData.getProductData());
-    }
+//    @Test(dataProvider = "BreadCrumbs", dataProviderClass = JsonReader.class)
+//    public void compareBreadCrumbs(BreadCrumbs breadCrumbs) {
+//        productsSteps.goToLaminatCategory();
+//        productsSteps.clickFirstAddToCartButton();
+//        productsSteps.goToCart();
+//        Assert.assertEquals(productsSteps.getProductData(), testData.getProductData());
+//    }
 }

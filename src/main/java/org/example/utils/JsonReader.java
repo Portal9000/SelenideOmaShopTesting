@@ -2,6 +2,7 @@ package org.example.utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.models.BreadCrumbs;
 import org.example.models.TestData;
 import org.example.models.UserData;
 import org.testng.annotations.DataProvider;
@@ -44,6 +45,26 @@ public class JsonReader {
     }
 
     private List<TestData> readProductDataFromJson(String filePath) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file = new File(filePath);
+        try (FileInputStream fis = new FileInputStream(file)) {
+            return objectMapper.readValue(fis, new TypeReference<>() {
+            });
+        }
+    }
+
+    @DataProvider(name = "BreadCrumbs")
+    public Object[][] getBreadCrumbs() throws IOException {
+        String filePath = "src/test/resources/test-data/BreadCrumbs.json";
+        List<BreadCrumbs> breadCrumbsList = readTestDataFromJson(filePath);
+        Object[][] data = new Object[breadCrumbsList.size()][1];
+        for (int i = 0; i < breadCrumbsList.size(); i++) {
+            data[i][0] = breadCrumbsList.get(i);
+        }
+        return data;
+    }
+
+    private List<BreadCrumbs> readTestDataFromJson(String filePath) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File(filePath);
         try (FileInputStream fis = new FileInputStream(file)) {

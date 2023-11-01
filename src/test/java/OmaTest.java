@@ -1,4 +1,5 @@
 import com.codeborne.selenide.SelenideElement;
+import org.example.models.BreadCrumbs;
 import org.example.models.TestData;
 import org.example.models.UserData;
 import org.example.steps.LoginSteps;
@@ -41,5 +42,13 @@ public class OmaTest extends BaseTest {
     @Test
     public void clickStoreAddressesText() {
         productsSteps.clickStoreAddressesText("Адреса магазинов");
+    }
+
+    @Test(dataProvider = "BreadCrumbs", dataProviderClass = JsonReader.class)
+    public void compareBreadCrumbs(BreadCrumbs breadCrumbs) {
+        productsSteps.goToLaminatCategory();
+        productsSteps.clickFirstAddToCartButton();
+        productsSteps.goToCart();
+        Assert.assertEquals(productsSteps.getProductData(), testData.getProductData());
     }
 }

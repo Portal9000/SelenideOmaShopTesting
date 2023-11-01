@@ -80,7 +80,7 @@ public class ProductsSteps {
         return productData;
     }
 
-    public void clickStoreAddressesText (String storeAddresses) {
+    public void clickStoreAddressesText(String storeAddresses) {
         directCategoryPage.storeAddressesText(storeAddresses).click();
     }
 }

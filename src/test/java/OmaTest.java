@@ -15,9 +15,10 @@ public class OmaTest extends BaseTest {
     ProductsSteps productsSteps = new ProductsSteps();
     ClosePopUp closePopUp = new ClosePopUp();
 
-    @Test(dataProvider = "UserData", dataProviderClass = JsonReader.class)
-    public void loginTest(UserData userData) {
-        loginSteps.login(userData.getPhoneNumber(), userData.getPassword());
+    @Test(dataProvider = "userData", dataProviderClass = JsonReader.class)
+    public void loginTest(TestData testData) {
+        loginSteps.login(testData.getUserData().getPhoneNumber(), testData.getUserData().getPassword());
+//        loginSteps.login(loginSteps.getUserData(), loginSteps.setUserData(loginSteps.getUserData()));
         loginSteps.verifyLogin("Зинчук Александр Борисович");
     }
 
@@ -31,13 +32,13 @@ public class OmaTest extends BaseTest {
         productsSteps.verifyProductInCart(productName);
     }
 
-    @Test(dataProvider = "TestData", dataProviderClass = JsonReader.class)
+    @Test(dataProvider = "productData", dataProviderClass = JsonReader.class)
     public void compareProducts(TestData testData) {
         productsSteps.goToLaminatCategory();
         productsSteps.clickFirstAddToCartButton();
         closePopUp.closePopUps();
         productsSteps.goToCart();
-        Assert.assertEquals(productsSteps.getProductData(), testData.getProductData());
+        Assert.assertEquals(productsSteps.getProductData(), testData.getProductData()); //productsSteps.setProductData(testData.getProductData())
     }
 
 //    @Test

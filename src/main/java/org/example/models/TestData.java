@@ -11,4 +11,5 @@ public class TestData {
 
     UserData userData;
     ProductData productData;
+    BreadCrumbs breadCrumbs;
 }

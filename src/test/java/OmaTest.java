@@ -1,8 +1,8 @@
 import com.codeborne.selenide.SelenideElement;
 import org.example.models.BreadCrumbs;
 import org.example.models.TestData;
-import org.example.models.UserData;
 import org.example.steps.LoginSteps;
+import org.example.steps.MainMenuSteps;
 import org.example.steps.ProductsSteps;
 import org.example.utils.ClosePopUp;
 import org.example.utils.JsonReader;
@@ -13,13 +13,13 @@ public class OmaTest extends BaseTest {
 
     LoginSteps loginSteps = new LoginSteps();
     ProductsSteps productsSteps = new ProductsSteps();
+    MainMenuSteps mainMenuSteps = new MainMenuSteps();
     ClosePopUp closePopUp = new ClosePopUp();
 
     @Test(dataProvider = "userData", dataProviderClass = JsonReader.class)
     public void loginTest(TestData testData) {
         loginSteps.login(testData.getUserData().getPhoneNumber(), testData.getUserData().getPassword());
-//        loginSteps.login(loginSteps.getUserData(), loginSteps.setUserData(loginSteps.getUserData()));
-        loginSteps.verifyLogin("Зинчук Александр Борисович");
+        loginSteps.verifyLogin("Зинчук Александр Борисович"); //TODO JSON
     }
 
     @Test
@@ -34,10 +34,6 @@ public class OmaTest extends BaseTest {
 
     @Test(dataProvider = "productData", dataProviderClass = JsonReader.class)
     public void compareProducts(TestData testData) {
-        productsSteps.goToLaminatCategory();
-        productsSteps.clickFirstAddToCartButton();
-        closePopUp.closePopUps();
-        productsSteps.goToCart();
         Assert.assertEquals(productsSteps.getProductData(), testData.getProductData()); //productsSteps.setProductData(testData.getProductData())
     }
 
@@ -46,11 +42,10 @@ public class OmaTest extends BaseTest {
 //        productsSteps.clickStoreAddressesText("Адреса магазинов");
 //    }
 
-//    @Test(dataProvider = "BreadCrumbs", dataProviderClass = JsonReader.class)
-//    public void compareBreadCrumbs(BreadCrumbs breadCrumbs) {
-//        productsSteps.goToLaminatCategory();
-//        productsSteps.clickFirstAddToCartButton();
-//        productsSteps.goToCart();
-//        Assert.assertEquals(productsSteps.getProductData(), testData.getProductData());
-//    }
+    @Test(dataProvider = "breadCrumbs", dataProviderClass = JsonReader.class)
+    public void checkBreadCrumbs(BreadCrumbs breadCrumbs) {
+        System.out.println("starrrt");
+        mainMenuSteps.clickMainMenu(breadCrumbs.getHeaderMenu());
+        Assert.assertEquals(breadCrumbs.getBreadCrumb(), mainMenuSteps.getBreadCrumb());
+    }
 }

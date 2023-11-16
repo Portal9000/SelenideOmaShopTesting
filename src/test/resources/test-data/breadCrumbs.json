@@ -1,19 +1,6 @@
 [
   {
-    "headerMenu": "Акции",
-    "breadCrumb": "Акции"
+    "headerMenu": "akc",
+    "breadCrumb": "Акционные предложения ноября"
   }
-//,
-//  {
-//    "headerMenu": "Доставка",
-//    "breadCrumb": "Оплата и доставка"
-//  },
-//  {
-//    "headerMenu": "Рассрочка",
-//    "breadCrumb": "Рассрочка и кредит"
-//  },
-//  {
-//    "headerMenu": "Дисконт",
-//    "breadCrumb": "Дисконтные программы"
-//  }
 ]

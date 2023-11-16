@@ -79,8 +79,4 @@ public class ProductsSteps {
         productData.setProductPrice(cartPage.productPriceInCart.getText());
         return productData;
     }
-
-//    public void clickStoreAddressesText(String storeAddresses) {
-//        directCategoryPage.storeAddressesText(storeAddresses).click();
-//    }
 }

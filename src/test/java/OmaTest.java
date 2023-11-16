@@ -6,6 +6,7 @@ import org.example.steps.MainMenuSteps;
 import org.example.steps.ProductsSteps;
 import org.example.utils.ClosePopUp;
 import org.example.utils.JsonReader;
+import org.example.utils.Waiters;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -34,18 +35,15 @@ public class OmaTest extends BaseTest {
 
     @Test(dataProvider = "productData", dataProviderClass = JsonReader.class)
     public void compareProducts(TestData testData) {
+        productsSteps.goToLaminatCategory();
+        productsSteps.clickFirstAddToCartButton();
+        productsSteps.goToCart();
         Assert.assertEquals(productsSteps.getProductData(), testData.getProductData()); //productsSteps.setProductData(testData.getProductData())
     }
 
-//    @Test
-//    public void clickStoreAddressesText() {
-//        productsSteps.clickStoreAddressesText("Адреса магазинов");
-//    }
-
     @Test(dataProvider = "breadCrumbs", dataProviderClass = JsonReader.class)
     public void checkBreadCrumbs(BreadCrumbs breadCrumbs) {
-        System.out.println("starrrt");
         mainMenuSteps.clickMainMenu(breadCrumbs.getHeaderMenu());
-        Assert.assertEquals(breadCrumbs.getBreadCrumb(), mainMenuSteps.getBreadCrumb());
+        Assert.assertEquals(breadCrumbs.getBreadCrumb(), mainMenuSteps.getBreadCrumb(breadCrumbs.getBreadCrumb()));
     }
 }

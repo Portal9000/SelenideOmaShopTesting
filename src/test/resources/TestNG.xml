@@ -8,7 +8,6 @@
 <!--                    <include name="loginTest"/>-->
 <!--                    <include name="compareProducts"/>-->
 <!--                    <include name="addCheapestItemToCart"/>-->
-<!--                    <include name="clickStoreAddressesText"/>-->
                     <include name="checkBreadCrumbs"/>
                 </methods>
             </class>

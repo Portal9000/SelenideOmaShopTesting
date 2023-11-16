@@ -11,4 +11,5 @@ public class UserData {
 
     String phoneNumber;
     String password;
+    String accountOwnerName;
 }

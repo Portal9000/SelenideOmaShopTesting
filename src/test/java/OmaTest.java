@@ -1,4 +1,6 @@
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 import org.example.models.BreadCrumbs;
 import org.example.models.TestData;
 import org.example.steps.LoginSteps;
@@ -6,7 +8,6 @@ import org.example.steps.MainMenuSteps;
 import org.example.steps.ProductsSteps;
 import org.example.utils.ClosePopUp;
 import org.example.utils.JsonReader;
-import org.example.utils.Waiters;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -20,7 +21,7 @@ public class OmaTest extends BaseTest {
     @Test(dataProvider = "userData", dataProviderClass = JsonReader.class)
     public void loginTest(TestData testData) {
         loginSteps.login(testData.getUserData().getPhoneNumber(), testData.getUserData().getPassword());
-        loginSteps.verifyLogin("Зинчук Александр Борисович"); //TODO JSON
+        loginSteps.verifyLogin(testData.getUserData().getAccountOwnerName()); //TODO JSON
     }
 
     @Test
@@ -28,6 +29,7 @@ public class OmaTest extends BaseTest {
         productsSteps.goToLaminatCategory();
         SelenideElement cheapestProduct = productsSteps.findCheapestPrice();
         String productName = cheapestProduct.find(".product-item_title").getText();
+        closePopUp.closePopUps();
         productsSteps.addProductToCart(cheapestProduct);
         productsSteps.goToCart();
         productsSteps.verifyProductInCart(productName);
@@ -43,6 +45,8 @@ public class OmaTest extends BaseTest {
 
     @Test(dataProvider = "breadCrumbs", dataProviderClass = JsonReader.class)
     public void checkBreadCrumbs(BreadCrumbs breadCrumbs) {
+//        WebDriverRunner.getWebDriver().navigate().refresh();
+        Selenide.open();
         mainMenuSteps.clickMainMenu(breadCrumbs.getHeaderMenu());
         Assert.assertEquals(breadCrumbs.getBreadCrumb(), mainMenuSteps.getBreadCrumb(breadCrumbs.getBreadCrumb()));
     }

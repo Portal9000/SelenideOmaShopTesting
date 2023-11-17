@@ -1,18 +1,18 @@
 [
   {
-    "headerMenu": "akc",
-    "breadCrumb": "Акционные предложения ноября"
+    "headerMenu": "Акции",
+    "breadCrumb": "Акции"
   },
   {
-    "headerMenu": "top",
-    "breadCrumb": "Топ продаж"
+    "headerMenu": "Доставка",
+    "breadCrumb": "Оплата и доставка"
   },
   {
-    "headerMenu": "disc",
-    "breadCrumb": "Скидка от объема"
+    "headerMenu": "Рассрочка",
+    "breadCrumb": "Рассрочка и кредит"
   },
   {
-    "headerMenu": "pers",
-    "breadCrumb": "Персональный менеджер в ОМА"
+    "headerMenu": "Дисконт",
+    "breadCrumb": "Дисконтные программы"
   }
 ]

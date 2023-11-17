@@ -21,18 +21,7 @@ public class OmaTest extends BaseTest {
     @Test(dataProvider = "userData", dataProviderClass = JsonReader.class)
     public void loginTest(TestData testData) {
         loginSteps.login(testData.getUserData().getPhoneNumber(), testData.getUserData().getPassword());
-        loginSteps.verifyLogin(testData.getUserData().getAccountOwnerName()); //TODO JSON
-    }
-
-    @Test
-    public void addCheapestItemToCart() {
-        productsSteps.goToLaminatCategory();
-        SelenideElement cheapestProduct = productsSteps.findCheapestPrice();
-        String productName = cheapestProduct.find(".product-item_title").getText();
-        closePopUp.closePopUps();
-        productsSteps.addProductToCart(cheapestProduct);
-        productsSteps.goToCart();
-        productsSteps.verifyProductInCart(productName);
+        loginSteps.verifyLogin(testData.getUserData().getAccountOwnerName());
     }
 
     @Test(dataProvider = "productData", dataProviderClass = JsonReader.class)

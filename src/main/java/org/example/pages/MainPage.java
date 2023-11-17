@@ -10,11 +10,11 @@ public class MainPage {
     public SelenideElement personalAccountOwnerName = $(By.xpath("//h2[@class='personal-user_name']"));
     public SelenideElement chooseCommonCategoryOtdelka = $(By.xpath("//a[@href='/interer-i-otdelka-c']"));
     public SelenideElement headerMenuButtons(String headerMenu) {
-        return $(By.xpath("//div[contains(@class, 'header-menu')]//a[contains(@href, '" + headerMenu + "')]"));
+        return $(By.xpath("//div[@class='header-menu_item ']//a[contains(text(),'\" + headerMenu + \"')]"));
         //div[@class='header-menu_item ']//a[contains(text(),'" + headerMenu + "')]
     }
     public SelenideElement breadCrumbName(String breadCrumb) {
-        return $(By.xpath("//h1[contains(text(),'" + breadCrumb + "')]"));
+        return $(By.xpath("//div[@class='breadcrumbs_item  ']//span[contains(text(),'\" + breadCrumb + \"')]"));
         //div[@class='breadcrumbs_item  ']//span[contains(text(),'" + breadCrumb + "')]
     }
 }

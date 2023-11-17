@@ -1,18 +1,18 @@
 [
   {
-    "headerMenu": "Акции",
-    "breadCrumb": "Акции"
+    "headerMenu": "akc",
+    "breadCrumb": "Акционные предложения ноября"
   },
   {
-    "headerMenu": "Доставка",
-    "breadCrumb": "Оплата и доставка"
+    "headerMenu": "del",
+    "breadCrumb": "Оплата и доставка в г."
   },
   {
-    "headerMenu": "Рассрочка",
+    "headerMenu": "cre",
     "breadCrumb": "Рассрочка и кредит"
   },
   {
-    "headerMenu": "Дисконт",
-    "breadCrumb": "Дисконтные программы"
+    "headerMenu": "dis",
+    "breadCrumb": "Дисконтная программа лояльности ОМА"
   }
 ]

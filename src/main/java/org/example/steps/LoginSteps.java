@@ -2,7 +2,6 @@ package org.example.steps;
 
 import org.example.pages.LoginPage;
 import org.example.pages.MainPage;
-
 import static com.codeborne.selenide.Condition.text;
 
 public class LoginSteps {

@@ -3,7 +3,6 @@ package org.example.steps;
 import org.example.pages.DirectCategoryPage;
 import org.example.pages.MainPage;
 import org.example.utils.ClosePopUp;
-import org.example.utils.Waiters;
 
 public class MainMenuSteps {
 
@@ -24,6 +23,5 @@ public class MainMenuSteps {
     public void goToLaminatCategory() {
         mainPage.chooseCommonCategoryOtdelka.click();
         directCategoryPage.laminatCategoryPage.click();
-//        Waiters.sleep();
     }
 }

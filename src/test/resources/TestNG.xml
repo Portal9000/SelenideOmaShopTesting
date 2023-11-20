@@ -5,8 +5,8 @@
         <classes>
             <class name="OmaTest">
                 <methods>
-<!--                    <include name="loginTest"/>-->
-<!--                    <include name="compareProducts"/>-->
+                    <include name="loginTest"/>
+                    <include name="compareProducts"/>
                     <include name="checkBreadCrumbs"/>
                 </methods>
             </class>

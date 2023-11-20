@@ -18,55 +18,27 @@ public class ProductsSteps {
     CartPage cartPage = new CartPage();
     ClosePopUp closePopUp = new ClosePopUp();
 
-    public SelenideElement findCheapestPrice() {
-        double lowestPrice = Double.MAX_VALUE;
-        SelenideElement cheapestProduct = null;
-        for (SelenideElement productPrice : directCategoryPage.productPricesText) {
-            SelenideElement product = productPrice.closest("div[contains(@class, 'product-item__grid')]");        // TODO нужны все страницы
-            String priceText = productPrice.getText();
-            double price = Double.MAX_VALUE;
-            if (priceText != null && !priceText.equals("")) {
-                priceText = priceText
-                        .replace(" р. / шт", "")
-                        .replace(",", ".")
-                        .replace(" р.", "");
-                price = Double.parseDouble(priceText);
-                if (price < lowestPrice && price > 0) {
-                    lowestPrice = price;
-                    cheapestProduct = product;
-                }
-            }
-        }
-        return cheapestProduct;
-    }
-
-    public void goToLaminatCategory() {
-        mainPage.chooseCommonCategoryOtdelka.click();
-        directCategoryPage.laminatCategoryPage.click();
-        Waiters.sleep();
-    }
-
-    public void addProductToCart(SelenideElement product) {
-        product.find(".js_orderButton").scrollIntoView("{block: \"center\"}").hover().click();
-    }
-
     public void goToCart() {
         directCategoryPage.goToCartButton.click();
-    }
-
-    public void verifyProductInCart(String productName) {
-        cartPage.productNameInCart
-                .filter(text(productName))
-                .shouldHave(CollectionCondition.sizeGreaterThan(0));
     }
 
     public void clickFirstAddToCartButton() {
         directCategoryPage.firstAddToCartButton.scrollIntoView("{block: \"center\"}").hover().click();
     }
 
-    public ProductData getProductData() {
+    public String ProdNameFromCategory() {
+        return directCategoryPage.productNamesInCat.get(0).getText();
+    }
+    public String ProdPriceFromCategory() {
+        return directCategoryPage.productPricesInCat.get(0).getText()
+                .replace(" р. / шт", "")
+                .replace(" р.", "")
+                .replace(" руб.", "");
+    }
+
+    public ProductData getProductDataFromCart() {
         ProductData productData = new ProductData();
-        productData.setProductName(cartPage.productNameInCart.get(0).getText());
+        productData.setProductName(cartPage.productNameInCart.getText());
         productData.setProductPrice(cartPage.productPriceInCart.getText());
         return productData;
     }

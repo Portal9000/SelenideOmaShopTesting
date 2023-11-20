@@ -1,0 +1,12 @@
+[
+  {
+    "phoneNumber": "293305742",
+    "password": "c114b9b2",
+    "accountOwnerName": "Александр Борисович"
+  },
+  {
+  "phoneNumber": "293305742",
+  "password": "NOTc114b9b2",
+  "accountOwnerName": "Александр Борисович"
+  }
+]

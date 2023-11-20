@@ -10,6 +10,7 @@ public class DirectCategoryPage {
 
     public SelenideElement laminatCategoryPage = $(By.xpath("//div[@data-items-visible='11']/a[@href='/laminat-c']"));
     public SelenideElement firstAddToCartButton = $$(By.xpath("//button[@class=\"btn btn__catalog btn-bg_blue js_orderButton \"]")).first();
-    public ElementsCollection productPricesText = $$(By.xpath("//div[@id='data-ga__catalog-products-grid']//span[contains(@class,'price__normal')]"));
+    public ElementsCollection productNamesInCat = $$(By.xpath("//div[@id='data-ga__catalog-products-grid']//div[@class='wrapper']"));
+    public ElementsCollection productPricesInCat = $$(By.xpath("//div[@id='data-ga__catalog-products-grid']//span[contains(@class,'price__normal')]"));
     public SelenideElement goToCartButton = $(By.xpath("//a[@href='/order/']"));
 }

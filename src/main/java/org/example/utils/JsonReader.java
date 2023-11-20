@@ -3,7 +3,7 @@ package org.example.utils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.models.BreadCrumbs;
-import org.example.models.TestData;
+import org.example.models.UserData;
 import org.testng.annotations.DataProvider;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,8 +14,8 @@ public class JsonReader {
 
     @DataProvider(name = "userData")
     public Object[][] getUserData() throws IOException {
-        String filePath = "src/test/resources/test-data/testData.json";
-        List<TestData> userDataList = readUserDataFromJson(filePath);
+        String filePath = "src/test/resources/test-data/userData.json";
+        List<UserData> userDataList = readUserDataFromJson(filePath);
         Object[][] data = new Object[userDataList.size()][1];
         for (int i = 0; i < userDataList.size(); i++) {
             data[i][0] = userDataList.get(i);
@@ -23,27 +23,7 @@ public class JsonReader {
         return data;
     }
 
-    private List<TestData> readUserDataFromJson(String filePath) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        File file = new File(filePath);
-        try (FileInputStream fis = new FileInputStream(file)) {
-            return objectMapper.readValue(fis, new TypeReference<>() {
-            });
-        }
-    }
-
-    @DataProvider(name = "productData")
-    public Object[][] getProductData() throws IOException {
-        String filePath = "src/test/resources/test-data/testData.json";
-        List<TestData> productDataList = readProductDataFromJson(filePath);
-        Object[][] data = new Object[productDataList.size()][1];
-        for (int i = 0; i < productDataList.size(); i++) {
-            data[i][0] = productDataList.get(i);
-        }
-        return data;
-    }
-
-    private List<TestData> readProductDataFromJson(String filePath) throws IOException {
+    private List<UserData> readUserDataFromJson(String filePath) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File(filePath);
         try (FileInputStream fis = new FileInputStream(file)) {

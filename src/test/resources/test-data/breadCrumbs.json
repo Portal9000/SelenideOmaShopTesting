@@ -1,7 +1,15 @@
 [
   {
+    "headerMenu": "dis",
+    "breadCrumb": "Дисконтная программа лояльности ОМА"
+  },
+  {
+    "headerMenu": "cat",
+    "breadCrumb": "Каталог товаров"
+  },
+  {
     "headerMenu": "akc",
-    "breadCrumb": "Акционные предложения ноября"
+    "breadCrumb": "Черная пятница в ОМА!"
   },
   {
     "headerMenu": "del",
@@ -10,9 +18,5 @@
   {
     "headerMenu": "cre",
     "breadCrumb": "Рассрочка и кредит"
-  },
-  {
-    "headerMenu": "dis",
-    "breadCrumb": "Дисконтная программа лояльности ОМА"
   }
 ]

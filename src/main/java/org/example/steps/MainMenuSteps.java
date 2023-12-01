@@ -11,7 +11,6 @@ public class MainMenuSteps {
     DirectCategoryPage directCategoryPage = new DirectCategoryPage();
 
     public void clickMainMenu(String headerMenu) {
-        closePopUp.closePopUps();
         mainPage.headerMenuButtons(headerMenu).hover().click();
     }
 
